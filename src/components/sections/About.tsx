@@ -27,7 +27,12 @@ const css = `
 .ab-flip{position:absolute;inset:0;transform-style:preserve-3d;transition:transform 1s var(--ease)}
 .ab-card.is-flipped .ab-flip{transform:rotateY(180deg)}
 .ab-face{position:absolute;inset:0;border-radius:22px;background:#fff;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;box-shadow:var(--hair),0 2px 4px rgba(13,13,13,.05),0 40px 70px -30px rgba(13,13,13,.35);display:flex;flex-direction:column}
-.ab-back{transform:rotateY(180deg)}
+.ab-front{transform:translateZ(1px)}
+.ab-back{transform:rotateY(180deg) translateZ(1px)}
+/* iOS Safari ignores backface-visibility on promoted children (photo, holo) — hide each face as it passes edge-on */
+.ab-front,.ab-back{transition:visibility 0s linear .14s}
+.ab-back,.ab-card.is-flipped .ab-front{visibility:hidden}
+.ab-card.is-flipped .ab-back{visibility:visible}
 .ab-face::before{content:"";position:absolute;left:50%;top:12px;width:44px;height:8px;margin-left:-22px;border-radius:99px;background:var(--paper);box-shadow:inset 0 1px 2px rgba(0,0,0,.18);z-index:3}
 .ab-band{background:var(--ink);color:#fff;height:66px;display:flex;align-items:flex-start;justify-content:space-between;padding:26px 18px 0;font-family:var(--nf-mono),monospace;font-size:10.5px;letter-spacing:.2em}
 .ab-band b{font-weight:600}

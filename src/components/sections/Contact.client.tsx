@@ -117,7 +117,6 @@ export default function Contact() {
           <span>
             © {new Date().getFullYear()} {PROFILE.name}
           </span>
-          <span>Built with Next.js</span>
           <a
             href="#top"
             onClick={(e) => {
